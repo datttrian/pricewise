@@ -1,7 +1,34 @@
-import React from "react";
+import PriceInfoCard from "@/components/PriceInfoCard";
+import { getProductById } from "@/lib/actions";
+import { formatNumber } from "@/lib/utils";
+import { Product } from "@/types";
+import Image from "next/image";
+import Link from "next/link";
+import { redirect } from "next/navigation";
 
-const ProductDetails = () => {
-  return <div>ProductDetails</div>;
+type Props = {
+  params: { id: string };
+};
+
+const ProductDetails = async ({ params: { id } }: Props) => {
+  const product: Product = await getProductById(id);
+
+  if (!product) redirect("/");
+  return (
+    <div className="product-container">
+      <div className="flex gap-28 xl:flex-row flex-col">
+        <div className="product-image">
+          <Image
+            src={product.image}
+            alt={product.title}
+            width={580}
+            height={400}
+            className="mx-auto"
+          />
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default ProductDetails;
