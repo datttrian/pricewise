@@ -10,5 +10,7 @@
 },
 "extensions": [
 	"dsznajder.es7-react-js-snippets",
+	"streetsidesoftware.code-spell-checker",
+	"PKief.material-icon-theme"
 ],
 }
